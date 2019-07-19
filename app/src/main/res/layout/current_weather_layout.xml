@@ -1,8 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="450dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primaryColor">
+
+    <ImageView
+        android:id="@+id/iv_current_weather_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_launcher_foreground"
+        android:scaleType="fitXY"
+        app:layout_constraintVertical_bias=".35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_city"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/iv_forecast_weather_icon"
+        android:textColor="@color/primaryLightColor"
+        android:text="@string/city_state"
+        android:textSize="45sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_current_date"
+        app:layout_constraintTop_toBottomOf="@id/tv_city"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/primaryLightColor"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:text="@string/date_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_current_weather_info"
+        app:layout_constraintTop_toBottomOf="@id/iv_current_weather_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/current_weather_information"
+        android:textStyle="italic"
+        android:textColor="@color/primaryLightColor"
+        android:textSize="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_current_high_temp"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".35"
+        android:textColor="@color/primaryLightColor"
+        android:text="@string/high_temperature"
+        android:textStyle="bold"
+        android:textSize="50sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_current_low_temp"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
+        app:layout_constraintStart_toEndOf="@id/tv_current_high_temp"
+        android:textColor="@color/primaryDarkColor"
+        android:text="@string/low_temperature"
+        android:textSize="50sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_chance_of_precipitation"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_high_temp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/forecast_precipitation"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">WeeklyWeather</string>
-    <string name="city_country">Enugu, Nigeria</string>
-    <string name="date_today">Friday, 8 July</string>
-    <string name="current_temperature">26</string>
-    <string name="weather_information">Partly Cloud</string>
-    <string name="temp_information">26, partly cloudy</string>
+    <string name="city_state">Philadelphia, PA</string>
+    <string name="date_today">Monday, 8 July</string>
+    <string name="day_month">8 July</string>
+    <string name="current_temperature">90°</string>
+    <string name="high_temperature">90°</string>
+    <string name="low_temperature">/70°</string>
+    <string name="degrees_symbol">°</string>
+    <string name="current_weather_information">Partly Cloud</string>
+    <string name="forecast_weather_information">Partly Cloud</string>
+    <string name="forecast_precipitation">44%</string>
+    <string name="temp_information">90, partly cloudy</string>
     <string name="wind">WIND</string>
-    <string name="wind_speed">18 km/h</string>
+    <string name="wind_speed">6 km/h</string>
     <string name="humidity">HUMIDITY</string>
-    <string name="humidity_rate">73%</string>
-    <string name="day_of_week">Mon</string>
-    <string name="location_hints">Type city or postcode</string>
-    <string name="location_example">Example Malmo, Sweden</string>
-    <string name="add_new_location">Add new location</string>
-    <string name="stored_location">You can only store 5 locations</string>
-    <string name="permission_notice">This permission is important but you can as well set your location on Location page</string>
-    <string name="go_to_location">Go to location setting</string>
+    <string name="humidity_rate">63%</string>
+    <string name="day_of_week">MON</string>
 </resources>
