@@ -11,18 +11,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@drawable/scattered_showers"
         android:scaleType="fitXY"
         app:layout_constraintVertical_bias=".35"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintHeight_percent=".5"
+        app:layout_constraintWidth_percent=".5"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
 
     <TextView
         android:id="@+id/tv_city"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/iv_forecast_weather_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
         android:textColor="@color/primaryLightColor"
         android:text="@string/city_state"
         android:textSize="45sp"
@@ -43,9 +46,11 @@
 
     <TextView
         android:id="@+id/tv_current_weather_info"
-        app:layout_constraintTop_toBottomOf="@id/iv_current_weather_icon"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".65"
         android:text="@string/current_weather_information"
         android:textStyle="italic"
         android:textColor="@color/primaryLightColor"
@@ -54,11 +59,13 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tv_current_high_temp"
+        android:id="@+id/tv_current_temp"
         app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias=".35"
+        app:layout_constraintVertical_bias="0"
         android:textColor="@color/primaryLightColor"
         android:text="@string/high_temperature"
         android:textStyle="bold"
@@ -67,21 +74,22 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tv_current_low_temp"
+        android:id="@+id/tv_humidity"
         app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
-        app:layout_constraintStart_toEndOf="@id/tv_current_high_temp"
+        app:layout_constraintStart_toEndOf="@id/tv_current_temp"
         android:textColor="@color/primaryDarkColor"
-        android:text="@string/low_temperature"
+        android:text="@string/humidity_rate"
         android:textSize="50sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tv_chance_of_precipitation"
-        app:layout_constraintTop_toBottomOf="@id/tv_current_high_temp"
+        android:id="@+id/tv_current_chance_of_precipitation"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_temp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0"
         android:text="@string/forecast_precipitation"
         android:textColor="@color/primaryDarkColor"
         android:textSize="40sp"

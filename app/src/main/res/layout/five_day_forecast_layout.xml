@@ -11,13 +11,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/partly_cloudy"
         android:scaleType="fitXY"
         app:layout_constraintHeight_percent=".35"
         app:layout_constraintWidth_percent=".35"
-        app:layout_constraintVertical_bias=".40"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
 
     <TextView
         android:id="@+id/tv_day_of_week"
@@ -50,9 +49,11 @@
 
     <TextView
         android:id="@+id/tv_high_temp"
-        app:layout_constraintTop_toBottomOf="@id/iv_forecast_weather_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_low_temp"
+        app:layout_constraintVertical_bias=".75"
         android:textColor="@color/primaryLightColor"
         android:text="@string/high_temperature"
         android:textStyle="bold"
@@ -62,7 +63,7 @@
 
     <TextView
         android:id="@+id/tv_low_temp"
-        app:layout_constraintTop_toBottomOf="@id/iv_forecast_weather_icon"
+        app:layout_constraintTop_toTopOf="@id/tv_high_temp"
         app:layout_constraintStart_toEndOf="@id/tv_high_temp"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/primaryColor"

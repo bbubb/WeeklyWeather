@@ -9,7 +9,7 @@ public class Main{
 	private double temp;
 
 	@SerializedName("temp_min")
-	private int tempMin;
+	private double tempMin;
 
 	@SerializedName("humidity")
 	private int humidity;
@@ -28,11 +28,11 @@ public class Main{
 		return temp;
 	}
 
-	public void setTempMin(int tempMin){
+	public void setTempMin(double tempMin){
 		this.tempMin = tempMin;
 	}
 
-	public int getTempMin(){
+	public double getTempMin(){
 		return tempMin;
 	}
 

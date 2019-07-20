@@ -7,8 +7,8 @@
     <string name="high_temperature">90°</string>
     <string name="low_temperature">/70°</string>
     <string name="degrees_symbol">°</string>
-    <string name="current_weather_information">Partly Cloud</string>
-    <string name="forecast_weather_information">Partly Cloud</string>
+    <string name="current_weather_information">Scattered Showers</string>
+    <string name="forecast_weather_information">Partly Cloudy</string>
     <string name="forecast_precipitation">44%</string>
     <string name="temp_information">90, partly cloudy</string>
     <string name="wind">WIND</string>
