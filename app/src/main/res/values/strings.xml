@@ -8,8 +8,9 @@
     <string name="low_temperature">70°</string>
     <string name="current_weather_information">Scattered Showers</string>
     <string name="forecast_weather_information">Partly Cloudy</string>
-    <string name="current_rain_rate">{Rain 1h = 1.50}</string>
+    <string name="current_rain_rate">10%</string>
     <string name="forecast_precipitation">40 %</string>
+    <string name="precipitation">PRECIPITATION</string>
     <string name="temp_information">90, partly cloudy</string>
     <string name="wind">WIND</string>
     <string name="wind_speed">6 km/h</string>

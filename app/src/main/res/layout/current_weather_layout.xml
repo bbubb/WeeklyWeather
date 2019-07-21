@@ -88,7 +88,18 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tv_current_rain_rate"
+        android:id="@+id/tv_hintHumidity"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_humidity"
+        app:layout_constraintEnd_toStartOf="@id/tv_humidity"
+        android:textColor="@color/colorWhite"
+        android:text="@string/humidity"
+        android:layout_marginEnd="20dp"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_precipitation"
         app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,6 +108,17 @@
         android:text="@string/current_rain_rate"
         android:textColor="@color/primaryDarkColor"
         android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_hintRain"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_precipitation"
+        app:layout_constraintEnd_toStartOf="@id/tv_precipitation"
+        android:textColor="@color/colorWhite"
+        android:text="@string/precipitation"
+        android:layout_marginEnd="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -110,6 +132,17 @@
         android:textSize="30sp"
         android:textColor="@color/primaryDarkColor"
         android:text="@string/wind_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_hintWind"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_wind"
+        app:layout_constraintEnd_toStartOf="@id/tv_wind"
+        android:textColor="@color/colorWhite"
+        android:text="@string/wind"
+        android:layout_marginEnd="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

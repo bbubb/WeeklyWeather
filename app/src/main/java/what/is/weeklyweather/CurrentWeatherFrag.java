@@ -37,7 +37,7 @@ public class CurrentWeatherFrag extends Fragment {
     TextView tvHumidity;
     @BindView(R.id.tv_current_weather_info)
     TextView tvCurrentWeatherInfo;
-    @BindView(R.id.tv_current_rain_rate)
+    @BindView(R.id.tv_precipitation)
     TextView tvRainRate;
     @BindView(R.id.tv_wind)
     TextView tvWindSpeed;
@@ -58,15 +58,17 @@ public class CurrentWeatherFrag extends Fragment {
     }
 
     @Subscribe
-    public void onEventWeatherResponse(EventWeatherResponse eventWeatherResponse){
+    public void onEventWeatherResponse(EventWeatherResponse eventWeatherResponse) {
         Log.d(TAG, "onEventWeatherResponse: WeatherResponse Received");
         mWeatherResponse = eventWeatherResponse.weatherResponse;
-        tvCurrentDate.setText(android.text.format.DateFormat.format("E, dd MM",new Date(mWeatherResponse.getCurrently().getTime() * (long)1000)).toString().toUpperCase());
+        String date = (android.text.format.DateFormat.format("E, dd MM", new Date((long)(mWeatherResponse.getCurrently().getTime()) * (long) 1000)).toString().toUpperCase());
+        Log.d(TAG, "onEventWeatherResponse: "+ date);
+        tvCurrentDate.setText(date);
         tvCurrentWeatherInfo.setText(mWeatherResponse.getCurrently().getSummary());
-        tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getApparentTemperature()))+"°");
-        tvRainRate.setText(String.valueOf((mWeatherResponse.getCurrently().getPrecipProbability())*100)+"%");
-        tvWindSpeed.setText(String.valueOf(mWeatherResponse.getCurrently().getWindSpeed())+" km/h");
-        tvHumidity.setText(String.valueOf((mWeatherResponse.getCurrently().getHumidity())*100)+"%");
+        tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getTemperature())) + "°");
+        tvRainRate.setText(String.valueOf((mWeatherResponse.getCurrently().getPrecipProbability()) * 100) + "%");
+        tvWindSpeed.setText(String.valueOf(mWeatherResponse.getCurrently().getWindSpeed()) + " km/h");
+        tvHumidity.setText(String.valueOf((mWeatherResponse.getCurrently().getHumidity()) * 100) + "%");
     }
 
     @Override

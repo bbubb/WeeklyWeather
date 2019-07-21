@@ -33,8 +33,8 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         View view;
         holder.tvWeekDay.setText(android.text.format.DateFormat.format("E",(new Date(weekDay.getTime() * (long)1000))).toString().toUpperCase());
         holder.tvDate.setText(android.text.format.DateFormat.format("dd",(new Date(weekDay.getTime() * (long)1000))).toString().toUpperCase());
-        holder.tvTempHigh.setText(String.valueOf(Math.round(weekDay.getApparentTemperatureHigh()))+"°");
-        holder.tvTempLow.setText(String.valueOf(Math.round(weekDay.getApparentTemperatureLow()))+"°");
+        holder.tvTempHigh.setText(String.valueOf(Math.round(weekDay.getTemperatureMax()))+"°");
+        holder.tvTempLow.setText(String.valueOf(Math.round(weekDay.getTemperatureLow()))+"°");
 
         holder.ivWeatherIcon.setImageResource(R.drawable.sunny);
 //        holder.ivWeatherIcon.setImageResource(setIcon(weekDay.getIcon()));
