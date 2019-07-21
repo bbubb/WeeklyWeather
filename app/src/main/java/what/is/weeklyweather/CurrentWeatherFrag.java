@@ -61,13 +61,9 @@ public class CurrentWeatherFrag extends Fragment {
     public void onEventWeatherResponse(EventWeatherResponse eventWeatherResponse){
         Log.d(TAG, "onEventWeatherResponse: WeatherResponse Received");
         mWeatherResponse = eventWeatherResponse.weatherResponse;
-        long time = mWeatherResponse.getCurrently().getTime() * (long)1000;
-        Date date = new Date(time);
-
-        String strDate = DateFormat.getDateInstance(DateFormat.LONG).format(date);
-        tvCurrentDate.setText(strDate);
+        tvCurrentDate.setText(android.text.format.DateFormat.format("E, dd MM",new Date(mWeatherResponse.getCurrently().getTime() * (long)1000)).toString().toUpperCase());
         tvCurrentWeatherInfo.setText(mWeatherResponse.getCurrently().getSummary());
-        tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getApparentTemperature())));
+        tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getApparentTemperature()))+"°");
         tvRainRate.setText(String.valueOf((mWeatherResponse.getCurrently().getPrecipProbability())*100)+"%");
         tvWindSpeed.setText(String.valueOf(mWeatherResponse.getCurrently().getWindSpeed())+" km/h");
         tvHumidity.setText(String.valueOf((mWeatherResponse.getCurrently().getHumidity())*100)+"%");

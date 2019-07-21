@@ -14,6 +14,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,23 +27,24 @@ import what.is.weeklyweather.retrofit.WeatherService;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private String currentExclude="minutely,hourly,daily,alerts,flags", forecastExclude="currently,minutely,hourly,alerts,flags";
-    ForecastAdapter forecastAdapter;
-    EventWeatherResponse eventWeatherResponse;
     @BindView(R.id.rv_5day_forecast) RecyclerView recyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
+        ButterKnife.bind(this);
         CurrentWeatherFrag currentWeatherFrag = new CurrentWeatherFrag();
         loadFragment(R.id.frame_current_forecast, currentWeatherFrag, "Current Weather");
 
         retrofitCurrentDarkSkyRequest();
+        retrofitForecastDarkSkyRequest();
 
+        setRecyclerView();
 //        FiveDayForecastFrag fiveDayForecastFrag = new FiveDayForecastFrag();
 //        loadFragment(R.id., fiveDayForecastFrag, "5 Day Forecast");
 
-//        setRecyclerView();
+
 
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
@@ -51,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setRecyclerView(){
+        recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), 5, RecyclerView.VERTICAL, false));
+        recyclerView.setHasFixedSize(true);
+    }
+
+    private void loadRecyclerView (List<DataItem> forecastDays){
+        ForecastAdapter forecastAdapter = new ForecastAdapter(forecastDays);
+        recyclerView.setAdapter(forecastAdapter);
+    }
 
     public void retrofitCurrentDarkSkyRequest(){
         WeatherService currentDarkSkyService = RetrofitDarkSkyClient.getRetrofit().create(WeatherService.class);
@@ -82,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ForecastDarkSkyResponse> call, Response<ForecastDarkSkyResponse> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: Success");
-                    EventBus.getDefault().post(new EventForecastResponse(response.body()));
+                    loadRecyclerView(response.body().getDaily().getData());
 
                 }else {
                     Log.d(TAG, "onResponse: Failure");

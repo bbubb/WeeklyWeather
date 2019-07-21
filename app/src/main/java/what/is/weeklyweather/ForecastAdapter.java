@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -31,13 +30,42 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
         DataItem weekDay =items.get(position);
-        holder.tvWeekDay.setText(String.valueOf(weekDay.getTime()));
-        holder.tvDate.setText(DateFormat.getDateInstance(DateFormat.SHORT).format(new Date(weekDay.getTime()*(long)1000)));
-        holder.tvTempHigh.setText(String.valueOf(weekDay.getApparentTemperatureHigh())+"°");
-        holder.tvTempLow.setText(String.valueOf(weekDay.getApparentTemperatureLow())+"°");
-//        holder.ivWeatherIcon.setImageResource(weekDay.getWeather().get().getIcon());
+        View view;
+        holder.tvWeekDay.setText(android.text.format.DateFormat.format("E",(new Date(weekDay.getTime() * (long)1000))).toString().toUpperCase());
+        holder.tvDate.setText(android.text.format.DateFormat.format("dd",(new Date(weekDay.getTime() * (long)1000))).toString().toUpperCase());
+        holder.tvTempHigh.setText(String.valueOf(Math.round(weekDay.getApparentTemperatureHigh()))+"°");
+        holder.tvTempLow.setText(String.valueOf(Math.round(weekDay.getApparentTemperatureLow()))+"°");
+
+        holder.ivWeatherIcon.setImageResource(R.drawable.sunny);
+//        holder.ivWeatherIcon.setImageResource(setIcon(weekDay.getIcon()));
 
     }
+
+
+    public int setIcon(String icon){
+        int view = 0;
+       if(icon=="default") {
+           view = (R.drawable.sunny);
+       }  else if (icon == "clear-day"){
+           view =(R.drawable.sunny);
+           }else if(icon == "partly-cloudy-day"){
+           view =(R.drawable.scattered_showers);
+           }else if(icon == "cloudy"){
+           view =(R.drawable.partly_cloudy);
+           }else if(icon == "rain"){
+           view =(R.drawable.rain);
+           }else if(icon == "wind"){
+
+           }else if(icon == "thunderstorms"){
+           view =(R.drawable.stormy);
+           }else if(icon == "fog"){
+
+           }else if(icon == "snow"){
+           view = (R.drawable.snow);
+           }else if(icon == null){
+           view =(R.drawable.sunny);
+           }
+               return view; }
 
     @Override
     public int getItemCount() {
