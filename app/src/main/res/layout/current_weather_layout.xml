@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="450dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/primaryColor">
+    android:background="@color/primaryLightColor">
 
     <ImageView
         android:id="@+id/iv_current_weather_icon"
@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0"
-        android:textColor="@color/primaryLightColor"
+        android:textColor="@color/primaryDarkColor"
         android:text="@string/city_state"
         android:textSize="45sp"
         android:layout_width="wrap_content"
@@ -37,10 +37,11 @@
         app:layout_constraintTop_toBottomOf="@id/tv_city"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/primaryLightColor"
+        android:textColor="@color/primaryDarkColor"
         android:textSize="50sp"
         android:textStyle="bold"
         android:text="@string/date_today"
+        android:textAlignment="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -50,10 +51,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias=".65"
+        app:layout_constraintVertical_bias=".5"
+        android:textAlignment="center"
         android:text="@string/current_weather_information"
         android:textStyle="italic"
-        android:textColor="@color/primaryLightColor"
+        android:textColor="@color/primaryDarkColor"
         android:textSize="40sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -64,9 +66,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias=".35"
         app:layout_constraintVertical_bias="0"
-        android:textColor="@color/primaryLightColor"
+        android:textColor="@color/primaryDarkColor"
         android:text="@string/high_temperature"
         android:textStyle="bold"
         android:textSize="50sp"
@@ -76,23 +77,39 @@
     <TextView
         android:id="@+id/tv_humidity"
         app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
-        app:layout_constraintStart_toEndOf="@id/tv_current_temp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".35"
         android:textColor="@color/primaryDarkColor"
         android:text="@string/humidity_rate"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/tv_current_chance_of_precipitation"
-        app:layout_constraintTop_toBottomOf="@id/tv_current_temp"
+        android:id="@+id/tv_current_rain_rate"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0"
-        android:text="@string/forecast_precipitation"
+        app:layout_constraintVertical_bias=".55"
+        android:text="@string/current_rain_rate"
         android:textColor="@color/primaryDarkColor"
-        android:textSize="40sp"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_wind"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_weather_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".75"
+        android:textSize="30sp"
+        android:textColor="@color/primaryDarkColor"
+        android:text="@string/wind_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

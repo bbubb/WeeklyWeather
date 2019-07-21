@@ -3,12 +3,12 @@ package what.is.weeklyweather.retrofit;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitOpenWeatherClient {
-    public static final String BASE_URL = "http://api.openweathermap.org";
+public class RetrofitDarkSkyClient {
+    public static final String BASE_URL = "https://api.darksky.net";
 
     private static Retrofit retrofit;
 
-    private RetrofitOpenWeatherClient() {
+    private RetrofitDarkSkyClient() {
     }
 
     public static Retrofit getRetrofit(){

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,15 +15,20 @@ import androidx.fragment.app.Fragment;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import what.is.weeklyweather.currentweatherpojo.WeatherResponse;
+import what.is.weeklyweather.currentdarksky.CurrentDarkSkyResponse;
 
 public class CurrentWeatherFrag extends Fragment {
     Unbinder unbinder;
     private static final String TAG = "CurrentWeatherFrag";
-    WeatherResponse mWeatherResponse;
+    CurrentDarkSkyResponse mWeatherResponse;
     @BindView(R.id.tv_current_date)
     TextView tvCurrentDate;
     @BindView(R.id.tv_current_temp)
@@ -33,8 +37,10 @@ public class CurrentWeatherFrag extends Fragment {
     TextView tvHumidity;
     @BindView(R.id.tv_current_weather_info)
     TextView tvCurrentWeatherInfo;
-    @BindView(R.id.tv_current_chance_of_precipitation)
-    TextView tvCurrentPrecipitation;
+    @BindView(R.id.tv_current_rain_rate)
+    TextView tvRainRate;
+    @BindView(R.id.tv_wind)
+    TextView tvWindSpeed;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -55,14 +61,16 @@ public class CurrentWeatherFrag extends Fragment {
     public void onEventWeatherResponse(EventWeatherResponse eventWeatherResponse){
         Log.d(TAG, "onEventWeatherResponse: WeatherResponse Received");
         mWeatherResponse = eventWeatherResponse.weatherResponse;
-//        tvCurrentWeatherInfo = mWeatherResponse.getWeather().get().getDescription();
-        double temp = mWeatherResponse.getMain().getTemp();
-        String strTemp = String.valueOf(Math.round(temp));
-        tvCurrentTemp.setText(strTemp);
-        Toast.makeText(getContext(), strTemp, Toast.LENGTH_SHORT).show();
-        tvHumidity.setText(String.valueOf(mWeatherResponse.getMain().getHumidity())+"%");
-        tvCurrentPrecipitation.setText(String.valueOf(mWeatherResponse.getRain())+"%");
+        long time = mWeatherResponse.getCurrently().getTime() * (long)1000;
+        Date date = new Date(time);
 
+        String strDate = DateFormat.getDateInstance(DateFormat.LONG).format(date);
+        tvCurrentDate.setText(strDate);
+        tvCurrentWeatherInfo.setText(mWeatherResponse.getCurrently().getSummary());
+        tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getApparentTemperature())));
+        tvRainRate.setText(String.valueOf((mWeatherResponse.getCurrently().getPrecipProbability())*100)+"%");
+        tvWindSpeed.setText(String.valueOf(mWeatherResponse.getCurrently().getWindSpeed())+" km/h");
+        tvHumidity.setText(String.valueOf((mWeatherResponse.getCurrently().getHumidity())*100)+"%");
     }
 
     @Override

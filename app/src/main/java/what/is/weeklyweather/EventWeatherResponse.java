@@ -1,11 +1,11 @@
 package what.is.weeklyweather;
 
-import what.is.weeklyweather.currentweatherpojo.WeatherResponse;
+import what.is.weeklyweather.currentdarksky.CurrentDarkSkyResponse;
 
 public class EventWeatherResponse {
-    public final WeatherResponse weatherResponse;
+    public final CurrentDarkSkyResponse weatherResponse;
 
-    public EventWeatherResponse(WeatherResponse weatherResponse) {
+    public EventWeatherResponse(CurrentDarkSkyResponse weatherResponse) {
         this.weatherResponse = weatherResponse;
     }
 }

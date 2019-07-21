@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/secondaryColor"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/secondaryColor">
 
     <FrameLayout
         android:id="@+id/frame_current_forecast"
@@ -21,18 +21,21 @@
 
     </FrameLayout>
 
-    <GridLayout
-        android:id="@+id/frame_5day_forecast"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_5day_forecast"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:columnCount="5"
-        android:rowCount="1"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        tools:listitem="@layout/five_day_forecast_item"
+        tools:itemCount="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frame_current_forecast"
         android:background="@color/primaryDarkColor"
         >
-    </GridLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

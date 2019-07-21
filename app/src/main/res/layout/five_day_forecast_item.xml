@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="300dp"
+    android:layout_width="82dp"
+    android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/primaryDarkColor">
+    android:background="@color/primaryDarkColor"
+    android:foreground="?android:selectableItemBackgroundBorderless"
+    android:layout_marginHorizontal="1dp">
 
     <ImageView
         android:id="@+id/iv_forecast_weather_icon"
@@ -13,8 +15,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:src="@drawable/partly_cloudy"
         android:scaleType="fitXY"
-        app:layout_constraintHeight_percent=".35"
-        app:layout_constraintWidth_percent=".35"
+        app:layout_constraintHeight_percent=".40"
+        app:layout_constraintWidth_percent=".90"
+        app:layout_constraintVertical_bias=".4"
         android:layout_width="0dp"
         android:layout_height="0dp" />
 
@@ -28,21 +31,22 @@
         android:textAllCaps="true"
         android:textColor="@color/primaryLightColor"
         android:text="@string/day_of_week"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_forecast_day_month"
-        app:layout_constraintTop_toBottomOf="@id/tv_day_of_week"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/iv_forecast_weather_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".18"
         android:textAllCaps="true"
         android:textColor="@color/primaryLightColor"
         android:text="@string/day_month"
-        android:textSize="35sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -52,37 +56,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tv_low_temp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias=".75"
+        app:layout_constraintHorizontal_bias=".25"
         android:textColor="@color/primaryLightColor"
         android:text="@string/high_temperature"
         android:textStyle="bold"
-        android:textSize="50sp"
+        android:textSize="35sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_low_temp"
-        app:layout_constraintTop_toTopOf="@id/tv_high_temp"
-        app:layout_constraintStart_toEndOf="@id/tv_high_temp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/primaryColor"
-        android:text="@string/low_temperature"
-        android:textSize="50sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tv_chance_of_precipitation"
-        app:layout_constraintTop_toBottomOf="@id/tv_high_temp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/forecast_precipitation"
-        android:textColor="@color/primaryColor"
-        android:textSize="40sp"
+        app:layout_constraintVertical_bias=".95"
+        app:layout_constraintHorizontal_bias=".85"
+        android:textColor="@color/primaryLightColor"
+        android:text="@string/low_temperature"
+        android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
