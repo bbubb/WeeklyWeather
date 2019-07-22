@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         ButterKnife.bind(this);
+
         CurrentWeatherFrag currentWeatherFrag = new CurrentWeatherFrag();
         loadFragment(R.id.frame_current_forecast, currentWeatherFrag, "Current Weather");
 
