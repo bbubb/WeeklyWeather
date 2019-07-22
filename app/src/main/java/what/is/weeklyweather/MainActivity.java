@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void setHourlyRecycler(){
-        hourlyRecycler.setLayoutManager(new LinearLayoutManager(hourlyRecycler.getContext(), LinearLayoutManager.VERTICAL, false ));
+        hourlyRecycler.setLayoutManager(new LinearLayoutManager(hourlyRecycler.getContext(), RecyclerView.VERTICAL, false ));
         hourlyRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         hourlyRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
         hourlyRecycler.setHasFixedSize(true);
