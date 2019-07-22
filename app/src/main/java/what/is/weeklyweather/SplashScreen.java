@@ -28,12 +28,15 @@ public class SplashScreen extends AppCompatActivity implements LocationListener 
     TextView tvLngCords;
     @BindView(R.id.tv_lat_cords)
     TextView tvLatCords;
+    DecimalFormat twoDForm;
+    Intent i;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         ButterKnife.bind(this);
+        i = new Intent(SplashScreen.this, MainActivity.class);
 
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -59,7 +62,7 @@ public class SplashScreen extends AppCompatActivity implements LocationListener 
             @Override
             public void run () {
                 //runs after delay
-                Intent i = new Intent(SplashScreen.this, MainActivity.class);
+
                 startActivity(i);
 
                 //close this activity
@@ -83,9 +86,11 @@ public class SplashScreen extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
-        DecimalFormat twoDForm = new DecimalFormat("#0.00");
+        twoDForm = new DecimalFormat("#0.0000000");
         tvLngCords.setText(String.valueOf(twoDForm.format(location.getLongitude())));
         tvLatCords.setText(String.valueOf(twoDForm.format(location.getLatitude())));
+        i.putExtra("lng", String.valueOf(twoDForm.format(location.getLongitude())));
+        i.putExtra("lat", String.valueOf(twoDForm.format(location.getLatitude())));
     }
 
     @Override

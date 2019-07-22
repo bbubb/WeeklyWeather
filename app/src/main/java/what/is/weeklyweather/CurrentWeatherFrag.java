@@ -61,7 +61,7 @@ public class CurrentWeatherFrag extends Fragment {
     public void onEventWeatherResponse(EventWeatherResponse eventWeatherResponse) {
         Log.d(TAG, "onEventWeatherResponse: WeatherResponse Received");
         mWeatherResponse = eventWeatherResponse.weatherResponse;
-        String date = (android.text.format.DateFormat.format("E, dd MM", new Date((long)(mWeatherResponse.getCurrently().getTime()) * (long) 1000)).toString().toUpperCase());
+        String date = (android.text.format.DateFormat.format("E, dd MMM", new Date((long)(mWeatherResponse.getCurrently().getTime()) * (long) 1000)).toString());
         Log.d(TAG, "onEventWeatherResponse: "+ date);
         tvCurrentDate.setText(date);
         tvCurrentWeatherInfo.setText(mWeatherResponse.getCurrently().getSummary());

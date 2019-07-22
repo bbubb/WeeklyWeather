@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintHeight_percent=".65"
+        app:layout_constraintHeight_percent=".5"
         android:background="@color/primaryColor"
         >
 
@@ -23,19 +23,32 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_5day_forecast"
+        android:id="@+id/rv_hourly"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
-        tools:listitem="@layout/five_day_forecast_item"
+        tools:listitem="@layout/hourly_item"
+        app:layout_constraintHeight_percent=".23"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/frame_current_forecast"
         android:background="@color/primaryLightColor"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_forecast"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/sevenday_forecast_item"
+        android:background="@color/primaryLightColor"
+        app:layout_constraintTop_toBottomOf="@id/rv_hourly"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,15 +2,21 @@ package what.is.weeklyweather.retrofit;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import what.is.weeklyweather.currentdarksky.CurrentDarkSkyResponse;
 import what.is.weeklyweather.forecastdarksky.ForecastDarkSkyResponse;
+import what.is.weeklyweather.hourlydarksky.HourlyDarkSkyResponse;
 
 public interface WeatherService {
 
-    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/39.9517178,-75.1703913")
-    Call<CurrentDarkSkyResponse> loadCurrentDarkSkyService(@Query("exclude") String excludes);
+    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}")
+    Call<CurrentDarkSkyResponse> loadCurrentDarkSkyService(@Path(value="loc", encoded = true) String loc, @Query("exclude") String exclude);
 
-    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/39.9517178,-75.1703913")
-    Call<ForecastDarkSkyResponse> loadForecastDarkSkyService(@Query("exclude") String excludes);
+    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}")
+    Call<ForecastDarkSkyResponse> loadForecastDarkSkyService(@Path(value="loc", encoded = true) String loc, @Query("exclude") String exclude);
+
+    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}")
+    Call<HourlyDarkSkyResponse> loadHourlyDarkSkyService(@Path(value="loc", encoded = true) String loc, @Query("exclude") String exclude);
+
 }
