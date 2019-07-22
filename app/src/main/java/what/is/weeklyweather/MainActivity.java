@@ -1,9 +1,9 @@
 package what.is.weeklyweather;
 
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,22 +44,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
         ButterKnife.bind(this);
 
-        Intent i = new Intent();
-        lng = i.getStringExtra("lng");
-        lat = i.getStringExtra("lat");
+        lng = getIntent().getStringExtra("lng");
+        lat = getIntent().getStringExtra("lat");
         loc = lng+","+lat;
+        Toast.makeText(this, loc, Toast.LENGTH_SHORT).show();
         CurrentWeatherFrag currentWeatherFrag = new CurrentWeatherFrag();
         loadFragment(R.id.frame_current_forecast, currentWeatherFrag, "Current Weather");
 
         retrofitCurrentDarkSkyRequest();
         retrofitForecastDarkSkyRequest();
+        retrofitHourlyDarkSkyRequest();
 
         setHourlyRecycler();
         setForecastRecycler();
-//        FiveDayForecastFrag fiveDayForecastFrag = new FiveDayForecastFrag();
-//        loadFragment(R.id., fiveDayForecastFrag, "5 Day Forecast");
-
     }
+
     private void setHourlyRecycler(){
         hourlyRecycler.setLayoutManager(new LinearLayoutManager(hourlyRecycler.getContext(), RecyclerView.VERTICAL, false ));
         hourlyRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 }
 
     private void setForecastRecycler(){
-        forecastRecycler.setLayoutManager(new LinearLayoutManager(forecastRecycler.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        forecastRecycler.setLayoutManager(new LinearLayoutManager(forecastRecycler.getContext(), RecyclerView.HORIZONTAL, false));
         forecastRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         forecastRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
         forecastRecycler.setHasFixedSize(true);

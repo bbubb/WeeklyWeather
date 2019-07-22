@@ -86,7 +86,7 @@ public class SplashScreen extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
-        twoDForm = new DecimalFormat("#0.0000000");
+        twoDForm = new DecimalFormat("#0.0000");
         tvLngCords.setText(String.valueOf(twoDForm.format(location.getLongitude())));
         tvLatCords.setText(String.valueOf(twoDForm.format(location.getLatitude())));
         i.putExtra("lng", String.valueOf(twoDForm.format(location.getLongitude())));
