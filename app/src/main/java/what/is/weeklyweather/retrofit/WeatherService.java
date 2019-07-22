@@ -10,13 +10,13 @@ import what.is.weeklyweather.hourlydarksky.HourlyDarkSkyResponse;
 
 public interface WeatherService {
 
-    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}")
+    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}/")
     Call<CurrentDarkSkyResponse> loadCurrentDarkSkyService(@Path(value="loc", encoded = true) String loc, @Query("exclude") String exclude);
 
-    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}")
+    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}/")
     Call<ForecastDarkSkyResponse> loadForecastDarkSkyService(@Path(value="loc", encoded = true) String loc, @Query("exclude") String exclude);
 
-    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}")
+    @GET("/forecast/a7a790212f6a24d9a64f2d8cd0022deb/{loc}/")
     Call<HourlyDarkSkyResponse> loadHourlyDarkSkyService(@Path(value="loc", encoded = true) String loc, @Query("exclude") String exclude);
 
 }

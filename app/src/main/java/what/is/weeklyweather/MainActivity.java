@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         lng = getIntent().getStringExtra("lng");
         lat = getIntent().getStringExtra("lat");
-        loc = lng+","+lat;
-        Toast.makeText(this, loc, Toast.LENGTH_SHORT).show();
+        loc = lat+","+lng;
+        Toast.makeText(this, loc, Toast.LENGTH_LONG).show();
         CurrentWeatherFrag currentWeatherFrag = new CurrentWeatherFrag();
         loadFragment(R.id.frame_current_forecast, currentWeatherFrag, "Current Weather");
 
