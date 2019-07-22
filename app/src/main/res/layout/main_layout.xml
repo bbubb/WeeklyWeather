@@ -26,7 +26,7 @@
         android:id="@+id/rv_5day_forecast"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
         tools:listitem="@layout/five_day_forecast_item"
         app:layout_constraintBottom_toBottomOf="parent"

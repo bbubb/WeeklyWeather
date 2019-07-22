@@ -66,9 +66,9 @@ public class CurrentWeatherFrag extends Fragment {
         tvCurrentDate.setText(date);
         tvCurrentWeatherInfo.setText(mWeatherResponse.getCurrently().getSummary());
         tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getTemperature())) + "°");
-        tvRainRate.setText(String.valueOf((mWeatherResponse.getCurrently().getPrecipProbability()) * 100) + "%");
-        tvWindSpeed.setText(String.valueOf(mWeatherResponse.getCurrently().getWindSpeed()) + " km/h");
-        tvHumidity.setText(String.valueOf((mWeatherResponse.getCurrently().getHumidity()) * 100) + "%");
+        tvRainRate.setText(String.valueOf(Math.round((mWeatherResponse.getCurrently().getPrecipProbability()) * 100)) + "%");
+        tvWindSpeed.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getWindSpeed())) + " km/h");
+        tvHumidity.setText(String.valueOf(Math.round((mWeatherResponse.getCurrently().getHumidity()) * 100)) + "%");
     }
 
     @Override

@@ -6,7 +6,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -44,17 +46,12 @@ public class MainActivity extends AppCompatActivity {
 //        FiveDayForecastFrag fiveDayForecastFrag = new FiveDayForecastFrag();
 //        loadFragment(R.id., fiveDayForecastFrag, "5 Day Forecast");
 
-
-
-//        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-//        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
-
-
-
     }
 
     private void setRecyclerView(){
-        recyclerView.setLayoutManager(new GridLayoutManager(recyclerView.getContext(), 5, RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
         recyclerView.setHasFixedSize(true);
     }
 
