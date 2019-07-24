@@ -60,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setHourlyRecycler(){
-        hourlyRecycler.setLayoutManager(new LinearLayoutManager(hourlyRecycler.getContext(), RecyclerView.VERTICAL, false ));
+        hourlyRecycler.setLayoutManager(new LinearLayoutManager(hourlyRecycler.getContext(), LinearLayoutManager.HORIZONTAL, false ));
         hourlyRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         hourlyRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
         hourlyRecycler.setHasFixedSize(true);
 }
 
     private void setForecastRecycler(){
-        forecastRecycler.setLayoutManager(new LinearLayoutManager(forecastRecycler.getContext(), RecyclerView.HORIZONTAL, false));
+        forecastRecycler.setLayoutManager(new LinearLayoutManager(forecastRecycler.getContext(), LinearLayoutManager.VERTICAL, false));
         forecastRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         forecastRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
         forecastRecycler.setHasFixedSize(true);

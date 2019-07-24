@@ -30,14 +30,14 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     @Override
     public ForecastViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.hourly_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.sevenday_forecast_item, parent, false);
         return new ForecastViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
         DataItem weekDay = items.get(position);
-        holder.tvWeekDay.setText(android.text.format.DateFormat.format("E-dd", (new Date(weekDay.getTime() * (long) 1000))).toString().toUpperCase());
+        holder.tvWeekDay.setText(android.text.format.DateFormat.format("EEEEE-dd", (new Date(weekDay.getTime() * (long) 1000))).toString().toUpperCase());
         holder.tvWeatherInfo.setText(weekDay.getSummary());
         holder.tvTempHigh.setText(String.valueOf(Math.round(weekDay.getTemperatureMax())) + "°");
         holder.tvTempLow.setText(String.valueOf(Math.round(weekDay.getTemperatureLow())) + "°");
