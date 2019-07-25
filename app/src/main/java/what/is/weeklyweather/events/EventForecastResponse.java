@@ -1,6 +1,6 @@
-package what.is.weeklyweather;
+package what.is.weeklyweather.events;
 
-import what.is.weeklyweather.forecastdarksky.ForecastDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.ForecastDarkSkyResponse;
 
 public class EventForecastResponse {
     public final ForecastDarkSkyResponse forecastResponse;

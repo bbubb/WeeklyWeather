@@ -1,4 +1,4 @@
-package what.is.weeklyweather;
+package what.is.weeklyweather.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Date;
 import java.util.List;
 
-import what.is.weeklyweather.forecastdarksky.DataItem;
+import what.is.weeklyweather.R;
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
 
-    private List<DataItem> items;
+    private List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> items;
     private Context context;
 
-    public ForecastAdapter(List<DataItem> items) {
+    public ForecastAdapter(List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> items) {
         this.items = items;
     }
 
@@ -40,7 +41,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         holder.tvWeekDay.setText(android.text.format.DateFormat.format("EEEEE-dd", (new Date(weekDay.getTime() * (long) 1000))).toString().toUpperCase());
         holder.tvWeatherInfo.setText(weekDay.getSummary());
         holder.tvTempHigh.setText(String.valueOf(Math.round(weekDay.getTemperatureMax())) + "°");
-        holder.tvTempLow.setText(String.valueOf(Math.round(weekDay.getTemperatureLow())) + "°");
+        holder.tvTempLow.setText(String.valueOf(Math.round(weekDay.getTemperatureMin())) + "°");
         holder.ivWeatherIcon.setImageDrawable(getWeatherIcon(weekDay.getIcon()));
 
     }

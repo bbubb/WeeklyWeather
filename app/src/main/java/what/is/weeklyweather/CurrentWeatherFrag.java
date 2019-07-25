@@ -15,20 +15,18 @@ import androidx.fragment.app.Fragment;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import what.is.weeklyweather.currentdarksky.CurrentDarkSkyResponse;
+import what.is.weeklyweather.events.EventWeatherResponse;
+import what.is.weeklyweather.pojos.pojos.CurrentEntry;
 
 public class CurrentWeatherFrag extends Fragment {
     Unbinder unbinder;
     private static final String TAG = "CurrentWeatherFrag";
-    CurrentDarkSkyResponse mWeatherResponse;
+     CurrentEntry mWeatherResponse;
     @BindView(R.id.tv_current_date)
     TextView tvCurrentDate;
     @BindView(R.id.tv_current_temp)
@@ -61,14 +59,14 @@ public class CurrentWeatherFrag extends Fragment {
     public void onEventWeatherResponse(EventWeatherResponse eventWeatherResponse) {
         Log.d(TAG, "onEventWeatherResponse: WeatherResponse Received");
         mWeatherResponse = eventWeatherResponse.weatherResponse;
-        String date = (android.text.format.DateFormat.format("E, dd MMM", new Date((long)(mWeatherResponse.getCurrently().getTime()) * (long) 1000)).toString());
+        String date = (android.text.format.DateFormat.format("E, dd MMM", new Date((long)(mWeatherResponse.getCurrent().getTime()) * (long) 1000)).toString());
         Log.d(TAG, "onEventWeatherResponse: "+ date);
         tvCurrentDate.setText(date);
-        tvCurrentWeatherInfo.setText(mWeatherResponse.getCurrently().getSummary());
-        tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getTemperature())) + "°");
-        tvRainRate.setText(String.valueOf(Math.round((mWeatherResponse.getCurrently().getPrecipProbability()) * 100)) + "%");
-        tvWindSpeed.setText(String.valueOf(Math.round(mWeatherResponse.getCurrently().getWindSpeed())) + " km/h");
-        tvHumidity.setText(String.valueOf(Math.round((mWeatherResponse.getCurrently().getHumidity()) * 100)) + "%");
+        tvCurrentWeatherInfo.setText(mWeatherResponse.getCurrent().getSummary());
+        tvCurrentTemp.setText(String.valueOf(Math.round(mWeatherResponse.getCurrent().getTemperature())) + "°");
+        tvRainRate.setText(String.valueOf(Math.round((mWeatherResponse.getCurrent().getPrecipProbability()) * 100)) + "%");
+        tvWindSpeed.setText(String.valueOf(Math.round(mWeatherResponse.getCurrent().getWindSpeed())) + " m/h");
+        tvHumidity.setText(String.valueOf(Math.round((mWeatherResponse.getCurrent().getHumidity()) * 100)) + "%");
     }
 
     @Override

@@ -4,9 +4,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import what.is.weeklyweather.currentdarksky.CurrentDarkSkyResponse;
-import what.is.weeklyweather.forecastdarksky.ForecastDarkSkyResponse;
-import what.is.weeklyweather.hourlydarksky.HourlyDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.CurrentDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.ForecastDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.HourlyDarkSkyResponse;
 
 public interface WeatherService {
 

@@ -1,11 +1,13 @@
-package what.is.weeklyweather.forecastdarksky;
+package what.is.weeklyweather.pojos.pojos.responses;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ForecastDarkSkyResponse{
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.hourly.Hourly;
+
+public class HourlyDarkSkyResponse{
 
 	@SerializedName("offset")
-	private int offset;
+	private double offset;
 
 	@SerializedName("timezone")
 	private String timezone;
@@ -13,17 +15,17 @@ public class ForecastDarkSkyResponse{
 	@SerializedName("latitude")
 	private double latitude;
 
-	@SerializedName("daily")
-	private Daily daily;
+	@SerializedName("hourly")
+	private Hourly hourly;
 
 	@SerializedName("longitude")
 	private double longitude;
 
-	public void setOffset(int offset){
+	public void setOffset(double offset){
 		this.offset = offset;
 	}
 
-	public int getOffset(){
+	public double getOffset(){
 		return offset;
 	}
 
@@ -43,12 +45,12 @@ public class ForecastDarkSkyResponse{
 		return latitude;
 	}
 
-	public void setDaily(Daily daily){
-		this.daily = daily;
+	public void setHourly(Hourly hourly){
+		this.hourly = hourly;
 	}
 
-	public Daily getDaily(){
-		return daily;
+	public Hourly getHourly(){
+		return hourly;
 	}
 
 	public void setLongitude(double longitude){
@@ -62,11 +64,11 @@ public class ForecastDarkSkyResponse{
 	@Override
  	public String toString(){
 		return 
-			"ForecastDarkSkyResponse{" + 
+			"HourlyDarkSkyResponse{" + 
 			"offset = '" + offset + '\'' + 
 			",timezone = '" + timezone + '\'' + 
 			",latitude = '" + latitude + '\'' + 
-			",daily = '" + daily + '\'' + 
+			",hourly = '" + hourly + '\'' + 
 			",longitude = '" + longitude + '\'' + 
 			"}";
 		}

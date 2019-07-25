@@ -1,11 +1,10 @@
-package what.is.weeklyweather.currentdarksky;
+package what.is.weeklyweather.pojos.pojos.responses;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CurrentDarkSkyResponse{
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.Daily;
 
-	@SerializedName("currently")
-	private Currently currently;
+public class ForecastDarkSkyResponse{
 
 	@SerializedName("offset")
 	private int offset;
@@ -16,16 +15,11 @@ public class CurrentDarkSkyResponse{
 	@SerializedName("latitude")
 	private double latitude;
 
+	@SerializedName("daily")
+	private Daily daily;
+
 	@SerializedName("longitude")
 	private double longitude;
-
-	public void setCurrently(Currently currently){
-		this.currently = currently;
-	}
-
-	public Currently getCurrently(){
-		return currently;
-	}
 
 	public void setOffset(int offset){
 		this.offset = offset;
@@ -51,6 +45,14 @@ public class CurrentDarkSkyResponse{
 		return latitude;
 	}
 
+	public void setDaily(Daily daily){
+		this.daily = daily;
+	}
+
+	public Daily getDaily(){
+		return daily;
+	}
+
 	public void setLongitude(double longitude){
 		this.longitude = longitude;
 	}
@@ -62,11 +64,11 @@ public class CurrentDarkSkyResponse{
 	@Override
  	public String toString(){
 		return 
-			"CurrentDarkSkyResponse{" + 
-			"currently = '" + currently + '\'' + 
-			",offset = '" + offset + '\'' + 
+			"ForecastDarkSkyResponse{" + 
+			"offset = '" + offset + '\'' + 
 			",timezone = '" + timezone + '\'' + 
 			",latitude = '" + latitude + '\'' + 
+			",daily = '" + daily + '\'' + 
 			",longitude = '" + longitude + '\'' + 
 			"}";
 		}

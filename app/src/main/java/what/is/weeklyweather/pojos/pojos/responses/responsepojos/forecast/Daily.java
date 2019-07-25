@@ -1,16 +1,16 @@
-package what.is.weeklyweather.hourlydarksky;
+package what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Hourly{
+public class Daily{
 
 	@SerializedName("summary")
 	private String summary;
 
 	@SerializedName("data")
-	private List<DataItem> data;
+	private List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> data;
 
 	@SerializedName("icon")
 	private String icon;
@@ -27,7 +27,7 @@ public class Hourly{
 		this.data = data;
 	}
 
-	public List<DataItem> getData(){
+	public List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> getData(){
 		return data;
 	}
 
@@ -42,7 +42,7 @@ public class Hourly{
 	@Override
  	public String toString(){
 		return 
-			"Hourly{" + 
+			"Daily{" + 
 			"summary = '" + summary + '\'' + 
 			",data = '" + data + '\'' + 
 			",icon = '" + icon + '\'' + 

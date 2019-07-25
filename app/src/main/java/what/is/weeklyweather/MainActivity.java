@@ -21,10 +21,20 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import what.is.weeklyweather.currentdarksky.CurrentDarkSkyResponse;
-import what.is.weeklyweather.forecastdarksky.DataItem;
-import what.is.weeklyweather.forecastdarksky.ForecastDarkSkyResponse;
-import what.is.weeklyweather.hourlydarksky.HourlyDarkSkyResponse;
+import what.is.weeklyweather.adapters.ForecastAdapter;
+import what.is.weeklyweather.adapters.HourlyAdapter;
+import what.is.weeklyweather.database.CurrentWeatherDatabase;
+import what.is.weeklyweather.database.ForecastDatabase;
+import what.is.weeklyweather.database.HourlyDatabase;
+import what.is.weeklyweather.events.EventWeatherResponse;
+
+import what.is.weeklyweather.pojos.pojos.CurrentEntry;
+import what.is.weeklyweather.pojos.pojos.ForecastEntry;
+import what.is.weeklyweather.pojos.pojos.HourlyEntry;
+import what.is.weeklyweather.pojos.pojos.responses.CurrentDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.ForecastDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.HourlyDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.hourly.DataItem;
 import what.is.weeklyweather.retrofit.RetrofitDarkSkyClient;
 import what.is.weeklyweather.retrofit.WeatherService;
 
@@ -37,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView hourlyRecycler;
     private String lng, lat, loc;
     private Location location;
+    private AppExecutors roomExecutor;
+    private CurrentWeatherDatabase mDbCurrently;
+    private ForecastDatabase mDbForecast;
+    private HourlyDatabase mDbHourly;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
         forecastRecycler.setHasFixedSize(true);
     }
 
-    private void loadForecastRecycler (List<DataItem> forecastDays){
+    private void loadForecastRecycler (List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> forecastDays){
         ForecastAdapter forecastAdapter = new ForecastAdapter(forecastDays);
         forecastRecycler.setAdapter(forecastAdapter);
     }
 
-    private void loadHourlyRecycler (List<what.is.weeklyweather.hourlydarksky.DataItem> hour){
+    private void loadHourlyRecycler (List<DataItem> hour){
         HourlyAdapter hourlyAdapter = new HourlyAdapter(hour);
         hourlyRecycler.setAdapter(hourlyAdapter);
     }
@@ -91,7 +106,14 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<CurrentDarkSkyResponse> call, Response<CurrentDarkSkyResponse> response) {
                 if(response.isSuccessful()){
                     Log.d(TAG, "onResponse: Success");
-                    EventBus.getDefault().post(new EventWeatherResponse(response.body()));
+                   final CurrentEntry currentEntry = new CurrentEntry(response.body().getCurrently() );
+                   roomExecutor.getDiskId().execute(new Runnable() {
+                       @Override
+                       public void run() {
+                           mDbCurrently.currentWeatherDAO().insert(currentEntry);
+                       }
+                   });
+                    EventBus.getDefault().post(new EventWeatherResponse(currentEntry));
                 }else{
                     Log.d(TAG, "onResponse: Failure");
                 }
@@ -113,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ForecastDarkSkyResponse> call, Response<ForecastDarkSkyResponse> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: Success");
+                    final ForecastEntry forecastEntry = new ForecastEntry(response.body().getDaily().getData());
+                    roomExecutor.getDiskId().execute(new Runnable() {
+                        @Override
+                        public void run() {mDbForecast.forecastDAO().insert(forecastEntry);}
+                    });
                     loadForecastRecycler(response.body().getDaily().getData());
 
                 }else {
@@ -137,6 +164,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<HourlyDarkSkyResponse> call, Response<HourlyDarkSkyResponse> response) {
                 if(response.isSuccessful()){
                     Log.d(TAG, "onResponse: Success");
+                    final HourlyEntry hourlyEntry = new HourlyEntry(response.body().getHourly().getData());
+                    roomExecutor.getDiskId().execute(new Runnable() {
+                        @Override
+                        public void run() {mDbHourly.hourlyDAO().insert(hourlyEntry);}
+                    });
                     loadHourlyRecycler(response.body().getHourly().getData());
                 } else {
                     Log.d(TAG, "onResponse: Failure");

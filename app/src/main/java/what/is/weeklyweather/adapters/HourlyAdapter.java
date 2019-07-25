@@ -1,4 +1,4 @@
-package what.is.weeklyweather;
+package what.is.weeklyweather.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Date;
 import java.util.List;
 
-import what.is.weeklyweather.hourlydarksky.DataItem;
+import what.is.weeklyweather.R;
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.hourly.DataItem;
 
 public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyViewHolder> {
 
-    private List<what.is.weeklyweather.hourlydarksky.DataItem> items;
+    private List<DataItem> items;
     private Context context;
 
-    public HourlyAdapter(List<what.is.weeklyweather.hourlydarksky.DataItem> items) {
+    public HourlyAdapter(List<DataItem> items) {
          this.items = items;
     }
 
@@ -40,7 +41,7 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
         holder.tvTemp.setText(String.valueOf(Math.round(hour.getTemperature())) + "°");
         holder.ivHourlyIcon.setImageDrawable(getWeatherIcon(hour.getIcon()));
         holder.tvHour.setText(android.text.format.DateFormat.format("hha", (new Date((long) (hour.getTime() * (long) 1000)))).toString().toUpperCase());
-        holder.tvPrecipitation.setText(String.valueOf(Math.round(hour.getPrecipProbability()))+"%");
+        holder.tvPrecipitation.setText(String.valueOf(Math.round((hour.getPrecipProbability())*100))+"%");
     }
 
     private Drawable getWeatherIcon(String icon) {

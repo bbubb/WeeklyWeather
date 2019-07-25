@@ -1,8 +1,8 @@
-package what.is.weeklyweather.hourlydarksky;
+package what.is.weeklyweather.pojos.pojos.responses.responsepojos;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DataItem{
+public class Currently{
 
 	@SerializedName("summary")
 	private String summary;
@@ -40,6 +40,12 @@ public class DataItem{
 	@SerializedName("ozone")
 	private double ozone;
 
+	@SerializedName("nearestStormBearing")
+	private double nearestStormBearing;
+
+	@SerializedName("nearestStormDistance")
+	private double nearestStormDistance;
+
 	@SerializedName("temperature")
 	private double temperature;
 
@@ -54,9 +60,6 @@ public class DataItem{
 
 	@SerializedName("uvIndex")
 	private double uvIndex;
-
-	@SerializedName("precipType")
-	private String precipType;
 
 	public void setSummary(String summary){
 		this.summary = summary;
@@ -90,11 +93,11 @@ public class DataItem{
 		return windGust;
 	}
 
-	public void setPrecipdoubleensity(double precipIntensity){
+	public void setPrecipIntensity(double precipIntensity){
 		this.precipIntensity = precipIntensity;
 	}
 
-	public double getPrecipdoubleensity(){
+	public double getPrecipIntensity(){
 		return precipIntensity;
 	}
 
@@ -114,7 +117,7 @@ public class DataItem{
 		return cloudCover;
 	}
 
-	public void setWindBearing(double windBearing){
+	public void setWindBearing(int windBearing){
 		this.windBearing = windBearing;
 	}
 
@@ -154,6 +157,22 @@ public class DataItem{
 		return ozone;
 	}
 
+	public void setNearestStormBearing(double nearestStormBearing){
+		this.nearestStormBearing = nearestStormBearing;
+	}
+
+	public double getNearestStormBearing(){
+		return nearestStormBearing;
+	}
+
+	public void setNearestStormDistance(double nearestStormDistance){
+		this.nearestStormDistance = nearestStormDistance;
+	}
+
+	public double getNearestStormDistance(){
+		return nearestStormDistance;
+	}
+
 	public void setTemperature(double temperature){
 		this.temperature = temperature;
 	}
@@ -170,7 +189,7 @@ public class DataItem{
 		return humidity;
 	}
 
-	public void setTime(double time){
+	public void setTime(int time){
 		this.time = time;
 	}
 
@@ -194,18 +213,10 @@ public class DataItem{
 		return uvIndex;
 	}
 
-	public void setPrecipType(String precipType){
-		this.precipType = precipType;
-	}
-
-	public String getPrecipType(){
-		return precipType;
-	}
-
 	@Override
  	public String toString(){
 		return 
-			"DataItem{" + 
+			"Currently{" + 
 			"summary = '" + summary + '\'' + 
 			",precipProbability = '" + precipProbability + '\'' + 
 			",visibility = '" + visibility + '\'' + 
@@ -218,12 +229,13 @@ public class DataItem{
 			",pressure = '" + pressure + '\'' + 
 			",dewPoint = '" + dewPoint + '\'' + 
 			",ozone = '" + ozone + '\'' + 
+			",nearestStormBearing = '" + nearestStormBearing + '\'' + 
+			",nearestStormDistance = '" + nearestStormDistance + '\'' + 
 			",temperature = '" + temperature + '\'' + 
 			",humidity = '" + humidity + '\'' + 
 			",time = '" + time + '\'' + 
 			",windSpeed = '" + windSpeed + '\'' + 
 			",uvIndex = '" + uvIndex + '\'' + 
-			",precipType = '" + precipType + '\'' + 
 			"}";
 		}
 }

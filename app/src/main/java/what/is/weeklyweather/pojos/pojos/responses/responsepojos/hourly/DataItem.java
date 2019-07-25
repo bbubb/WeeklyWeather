@@ -1,8 +1,8 @@
-package what.is.weeklyweather.currentdarksky;
+package what.is.weeklyweather.pojos.pojos.responses.responsepojos.hourly;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Currently{
+public class DataItem{
 
 	@SerializedName("summary")
 	private String summary;
@@ -40,12 +40,6 @@ public class Currently{
 	@SerializedName("ozone")
 	private double ozone;
 
-	@SerializedName("nearestStormBearing")
-	private double nearestStormBearing;
-
-	@SerializedName("nearestStormDistance")
-	private double nearestStormDistance;
-
 	@SerializedName("temperature")
 	private double temperature;
 
@@ -60,6 +54,9 @@ public class Currently{
 
 	@SerializedName("uvIndex")
 	private double uvIndex;
+
+	@SerializedName("precipType")
+	private String precipType;
 
 	public void setSummary(String summary){
 		this.summary = summary;
@@ -93,11 +90,11 @@ public class Currently{
 		return windGust;
 	}
 
-	public void setPrecipIntensity(double precipIntensity){
+	public void setPrecipdoubleensity(double precipIntensity){
 		this.precipIntensity = precipIntensity;
 	}
 
-	public double getPrecipIntensity(){
+	public double getPrecipdoubleensity(){
 		return precipIntensity;
 	}
 
@@ -117,7 +114,7 @@ public class Currently{
 		return cloudCover;
 	}
 
-	public void setWindBearing(int windBearing){
+	public void setWindBearing(double windBearing){
 		this.windBearing = windBearing;
 	}
 
@@ -157,22 +154,6 @@ public class Currently{
 		return ozone;
 	}
 
-	public void setNearestStormBearing(double nearestStormBearing){
-		this.nearestStormBearing = nearestStormBearing;
-	}
-
-	public double getNearestStormBearing(){
-		return nearestStormBearing;
-	}
-
-	public void setNearestStormDistance(double nearestStormDistance){
-		this.nearestStormDistance = nearestStormDistance;
-	}
-
-	public double getNearestStormDistance(){
-		return nearestStormDistance;
-	}
-
 	public void setTemperature(double temperature){
 		this.temperature = temperature;
 	}
@@ -189,7 +170,7 @@ public class Currently{
 		return humidity;
 	}
 
-	public void setTime(int time){
+	public void setTime(double time){
 		this.time = time;
 	}
 
@@ -213,10 +194,18 @@ public class Currently{
 		return uvIndex;
 	}
 
+	public void setPrecipType(String precipType){
+		this.precipType = precipType;
+	}
+
+	public String getPrecipType(){
+		return precipType;
+	}
+
 	@Override
  	public String toString(){
 		return 
-			"Currently{" + 
+			"DataItem{" + 
 			"summary = '" + summary + '\'' + 
 			",precipProbability = '" + precipProbability + '\'' + 
 			",visibility = '" + visibility + '\'' + 
@@ -229,13 +218,12 @@ public class Currently{
 			",pressure = '" + pressure + '\'' + 
 			",dewPoint = '" + dewPoint + '\'' + 
 			",ozone = '" + ozone + '\'' + 
-			",nearestStormBearing = '" + nearestStormBearing + '\'' + 
-			",nearestStormDistance = '" + nearestStormDistance + '\'' + 
 			",temperature = '" + temperature + '\'' + 
 			",humidity = '" + humidity + '\'' + 
 			",time = '" + time + '\'' + 
 			",windSpeed = '" + windSpeed + '\'' + 
 			",uvIndex = '" + uvIndex + '\'' + 
+			",precipType = '" + precipType + '\'' + 
 			"}";
 		}
 }
