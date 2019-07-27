@@ -18,7 +18,20 @@ public class ForecastEntry {
     @ColumnInfo(name = "forecast_list")
     private List<DataItem> mForecastList;
 
-    public ForecastEntry(List<DataItem> forecastList){this.mForecastList = forecastList;}
+    public ForecastEntry(List<DataItem> mForecastList) {
+        this.mForecastList = mForecastList;
+    }
 
-    public List<DataItem> getForecastList(){return this.mForecastList;}
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<DataItem> getForecastList() {
+        return mForecastList;
+    }
+
 }

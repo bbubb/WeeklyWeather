@@ -23,7 +23,11 @@ public class VmCurrentWeather extends AndroidViewModel {
         mAllCurrentEntries = mRepository.getAllCurrentWeatherEntries();
     }
 
-    LiveData<List<CurrentEntry>> getAllCurrentEntries(){return mAllCurrentEntries;}
+    public LiveData<List<CurrentEntry>> getAllCurrentEntries(){return mAllCurrentEntries;}
 
     public void insert(CurrentEntry currentWeatherEntry){mRepository.insert(currentWeatherEntry);}
+    public void update(CurrentEntry currentWeatherEntry){mRepository.update(currentWeatherEntry);}
+    public void delete(CurrentEntry currentWeatherEntry){mRepository.delete(currentWeatherEntry);}
+
+
 }

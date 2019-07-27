@@ -8,11 +8,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -23,11 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import what.is.weeklyweather.adapters.ForecastAdapter;
 import what.is.weeklyweather.adapters.HourlyAdapter;
-import what.is.weeklyweather.database.CurrentWeatherDatabase;
-import what.is.weeklyweather.database.ForecastDatabase;
-import what.is.weeklyweather.database.HourlyDatabase;
-import what.is.weeklyweather.events.EventWeatherResponse;
-
+import what.is.weeklyweather.database.WeatherDatabase;
 import what.is.weeklyweather.pojos.pojos.CurrentEntry;
 import what.is.weeklyweather.pojos.pojos.ForecastEntry;
 import what.is.weeklyweather.pojos.pojos.HourlyEntry;
@@ -37,6 +33,8 @@ import what.is.weeklyweather.pojos.pojos.responses.HourlyDarkSkyResponse;
 import what.is.weeklyweather.pojos.pojos.responses.responsepojos.hourly.DataItem;
 import what.is.weeklyweather.retrofit.RetrofitDarkSkyClient;
 import what.is.weeklyweather.retrofit.WeatherService;
+import what.is.weeklyweather.viewmodels.VmCurrentWeather;
+import what.is.weeklyweather.viewmodels.VmMainActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -45,13 +43,14 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView forecastRecycler;
     @BindView(R.id.rv_hourly)
     RecyclerView hourlyRecycler;
-    private String lng, lat, loc;
+    private String lng = "-75.1704", lat = "39.9517", loc;
     private Location location;
     private AppExecutors roomExecutor;
-    private CurrentWeatherDatabase mDbCurrently;
-    private ForecastDatabase mDbForecast;
-    private HourlyDatabase mDbHourly;
-
+    private WeatherDatabase mWeatherDb;
+    private VmCurrentWeather vmCurrentWeather;
+    private VmMainActivity vmMainActivity;
+    private ForecastAdapter forecastAdapter;
+    private HourlyAdapter hourlyAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_layout);
         ButterKnife.bind(this);
 
-        lng = getIntent().getStringExtra("lng");
-        lat = getIntent().getStringExtra("lat");
+//        lng = getIntent().getStringExtra("lng");
+//        lat = getIntent().getStringExtra("lat");
         loc = lat+","+lng;
         Toast.makeText(this, loc, Toast.LENGTH_LONG).show();
         CurrentWeatherFrag currentWeatherFrag = new CurrentWeatherFrag();
@@ -69,6 +68,22 @@ public class MainActivity extends AppCompatActivity {
         retrofitCurrentDarkSkyRequest();
         retrofitForecastDarkSkyRequest();
         retrofitHourlyDarkSkyRequest();
+
+        vmMainActivity = ViewModelProviders.of(this).get(VmMainActivity.class);
+        vmMainActivity.getAllForecastEntries().observe(this, new Observer<List<ForecastEntry>>() {
+            @Override
+            public void onChanged(List<ForecastEntry> forecastEntries) {
+                forecastAdapter.setItems(forecastEntries.get(0).getForecastList());
+            }
+        });
+
+        vmMainActivity.getAllHourlyEntries().observe(this, new Observer<List<HourlyEntry>>() {
+            @Override
+            public void onChanged(List<HourlyEntry> hourlyEntries) {
+                hourlyAdapter.setItems(hourlyEntries.get(0).getHourlyList());
+            }
+        });
+
 
         setHourlyRecycler();
         setForecastRecycler();
@@ -89,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadForecastRecycler (List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> forecastDays){
-        ForecastAdapter forecastAdapter = new ForecastAdapter(forecastDays);
+       forecastAdapter = new ForecastAdapter(forecastDays);
         forecastRecycler.setAdapter(forecastAdapter);
     }
 
     private void loadHourlyRecycler (List<DataItem> hour){
-        HourlyAdapter hourlyAdapter = new HourlyAdapter(hour);
+        hourlyAdapter = new HourlyAdapter(hour);
         hourlyRecycler.setAdapter(hourlyAdapter);
     }
 
@@ -110,10 +125,9 @@ public class MainActivity extends AppCompatActivity {
                    roomExecutor.getDiskId().execute(new Runnable() {
                        @Override
                        public void run() {
-                           mDbCurrently.currentWeatherDAO().insert(currentEntry);
+                           mWeatherDb.currentWeatherDAO().insert(currentEntry);
                        }
                    });
-                    EventBus.getDefault().post(new EventWeatherResponse(currentEntry));
                 }else{
                     Log.d(TAG, "onResponse: Failure");
                 }
@@ -138,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     final ForecastEntry forecastEntry = new ForecastEntry(response.body().getDaily().getData());
                     roomExecutor.getDiskId().execute(new Runnable() {
                         @Override
-                        public void run() {mDbForecast.forecastDAO().insert(forecastEntry);}
+                        public void run() {mWeatherDb.forecastDAO().insert(forecastEntry);}
                     });
                     loadForecastRecycler(response.body().getDaily().getData());
 
@@ -167,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                     final HourlyEntry hourlyEntry = new HourlyEntry(response.body().getHourly().getData());
                     roomExecutor.getDiskId().execute(new Runnable() {
                         @Override
-                        public void run() {mDbHourly.hourlyDAO().insert(hourlyEntry);}
+                        public void run() {mWeatherDb.hourlyDAO().insert(hourlyEntry);}
                     });
                     loadHourlyRecycler(response.body().getHourly().getData());
                 } else {

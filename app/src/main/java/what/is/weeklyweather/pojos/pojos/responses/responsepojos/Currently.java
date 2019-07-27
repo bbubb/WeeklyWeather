@@ -2,61 +2,81 @@ package what.is.weeklyweather.pojos.pojos.responses.responsepojos;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Currently{
+
+public class Currently  {
+
 
 	@SerializedName("summary")
 	private String summary;
 
+
 	@SerializedName("precipProbability")
 	private double precipProbability;
+
 
 	@SerializedName("visibility")
 	private double visibility;
 
+
 	@SerializedName("windGust")
 	private double windGust;
+
 
 	@SerializedName("precipIntensity")
 	private double precipIntensity;
 
+
 	@SerializedName("icon")
 	private String icon;
+
 
 	@SerializedName("cloudCover")
 	private double cloudCover;
 
+
 	@SerializedName("windBearing")
 	private double windBearing;
+
 
 	@SerializedName("apparentTemperature")
 	private double apparentTemperature;
 
+
 	@SerializedName("pressure")
 	private double pressure;
+
 
 	@SerializedName("dewPoint")
 	private double dewPoint;
 
+
 	@SerializedName("ozone")
 	private double ozone;
+
 
 	@SerializedName("nearestStormBearing")
 	private double nearestStormBearing;
 
+
 	@SerializedName("nearestStormDistance")
 	private double nearestStormDistance;
+
 
 	@SerializedName("temperature")
 	private double temperature;
 
+
 	@SerializedName("humidity")
 	private double humidity;
 
+
 	@SerializedName("time")
-	private double time;
+	private long time;
+
 
 	@SerializedName("windSpeed")
 	private double windSpeed;
+
 
 	@SerializedName("uvIndex")
 	private double uvIndex;
@@ -117,7 +137,7 @@ public class Currently{
 		return cloudCover;
 	}
 
-	public void setWindBearing(int windBearing){
+	public void setWindBearing(double windBearing){
 		this.windBearing = windBearing;
 	}
 
@@ -141,7 +161,7 @@ public class Currently{
 		return pressure;
 	}
 
-	public void setDewPoint(double dewPoint){
+	public void setDewPoint(double dewPodouble){
 		this.dewPoint = dewPoint;
 	}
 
@@ -189,11 +209,11 @@ public class Currently{
 		return humidity;
 	}
 
-	public void setTime(int time){
+	public void setTime(long time){
 		this.time = time;
 	}
 
-	public double getTime(){
+	public long getTime(){
 		return time;
 	}
 

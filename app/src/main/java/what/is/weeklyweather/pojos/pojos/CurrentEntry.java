@@ -1,7 +1,8 @@
 package what.is.weeklyweather.pojos.pojos;
 
-import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import what.is.weeklyweather.pojos.pojos.responses.responsepojos.Currently;
@@ -12,10 +13,30 @@ public class CurrentEntry {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "currently")
+    @Embedded
     private Currently mCurrently;
 
-    public CurrentEntry(Currently currently){this.mCurrently = currently;}
+    public CurrentEntry() {
+    }
 
-    public Currently getCurrent(){return this.mCurrently;}
+    @Ignore
+    public CurrentEntry(Currently mCurrently) {
+        this.mCurrently = mCurrently;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Currently getCurrently() {
+        return mCurrently;
+    }
+
+    public void setCurrently(Currently mCurrently) {
+        this.mCurrently = mCurrently;
+    }
 }

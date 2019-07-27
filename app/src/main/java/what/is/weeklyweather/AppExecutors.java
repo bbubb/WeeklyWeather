@@ -26,7 +26,7 @@ public class AppExecutors {
         if(sInstance==null){
             synchronized (LOCK){
                 sInstance= new AppExecutors(Executors.newSingleThreadExecutor(),
-                        Executors.newFixedThreadPool(3),
+                        Executors.newFixedThreadPool(4),
                         new MainThreadExecutor());
             }
         }

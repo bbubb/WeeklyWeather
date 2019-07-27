@@ -17,8 +17,19 @@ public class HourlyEntry {
     @ColumnInfo(name = "hourly_list")
     private List<DataItem> mHourlyList;
 
-    public HourlyEntry(List<DataItem> hourlyList){this.mHourlyList = hourlyList;}
+    public HourlyEntry(List<DataItem> mHourlyList) {
+        this.mHourlyList = mHourlyList;
+    }
 
-    public List<DataItem> getHourlyList(){return this.mHourlyList;}
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<DataItem> getHourlyList() {
+        return mHourlyList;
+    }
 }

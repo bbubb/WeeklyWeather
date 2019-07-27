@@ -27,6 +27,11 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         this.items = items;
     }
 
+    public void setItems(List<DataItem> mItems){
+        items = mItems;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ForecastViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

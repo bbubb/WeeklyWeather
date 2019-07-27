@@ -27,6 +27,11 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
          this.items = items;
     }
 
+    public void setItems(List<DataItem> mItems){
+        items = mItems;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public HourlyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
