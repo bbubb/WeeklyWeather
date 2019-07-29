@@ -2,6 +2,7 @@ package what.is.weeklyweather.repositories;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public class HourlyRepository {
 
     private HourlyDAO mHourlyDAO;
     private LiveData<List<HourlyEntry>> mAllHourlyEntries;
+    private LiveData<HourlyEntry> mHourlyEntry;
+
 
     public HourlyRepository(Application application){
         WeatherDatabase db = WeatherDatabase.getDatabase(application);
@@ -25,6 +28,7 @@ public class HourlyRepository {
     public LiveData<List<HourlyEntry>> getAllHourlyEntries(){
         return mAllHourlyEntries;
     }
+    public LiveData<HourlyEntry> getHourlyEntry(){return mHourlyEntry;}
 
     public void insert(HourlyEntry hourlyEntry){
         AppExecutors.getInstance().getDiskId().execute(new Runnable() {
@@ -32,5 +36,9 @@ public class HourlyRepository {
             public void run() {mHourlyDAO.insert(hourlyEntry);
             }
         });
+    }
+
+    public HourlyRepository(@NonNull int id, @NonNull WeatherDatabase db){
+        this.mHourlyEntry = db.hourlyDAO().getHourlyById(id);
     }
 }

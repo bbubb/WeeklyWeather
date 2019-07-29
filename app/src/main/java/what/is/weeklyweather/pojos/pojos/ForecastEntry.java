@@ -34,4 +34,5 @@ public class ForecastEntry {
         return mForecastList;
     }
 
+
 }

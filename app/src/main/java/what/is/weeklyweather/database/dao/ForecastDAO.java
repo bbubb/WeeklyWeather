@@ -29,4 +29,6 @@ public interface ForecastDAO {
 
     @Query("Select * from forecast_entry where id=:forecastId")
     LiveData<ForecastEntry> getForecastById(int forecastId);
+
+
 }

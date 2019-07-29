@@ -34,6 +34,7 @@ import what.is.weeklyweather.pojos.pojos.responses.responsepojos.hourly.DataItem
 import what.is.weeklyweather.retrofit.RetrofitDarkSkyClient;
 import what.is.weeklyweather.retrofit.WeatherService;
 import what.is.weeklyweather.viewmodels.VmCurrentWeather;
+import what.is.weeklyweather.viewmodels.VmFactory;
 import what.is.weeklyweather.viewmodels.VmMainActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
     private Location location;
     private AppExecutors roomExecutor;
     private WeatherDatabase mWeatherDb;
-    private VmCurrentWeather vmCurrentWeather;
-    private VmMainActivity vmMainActivity;
     private ForecastAdapter forecastAdapter;
     private HourlyAdapter hourlyAdapter;
 
@@ -69,23 +68,27 @@ public class MainActivity extends AppCompatActivity {
         retrofitForecastDarkSkyRequest();
         retrofitHourlyDarkSkyRequest();
 
-        vmMainActivity = ViewModelProviders.of(this).get(VmMainActivity.class);
-        vmMainActivity.getAllForecastEntries().observe(this, new Observer<List<ForecastEntry>>() {
-            @Override
-            public void onChanged(List<ForecastEntry> forecastEntries) {
-                forecastAdapter.setItems(forecastEntries.get(0).getForecastList());
-            }
-        });
+        mWeatherDb=WeatherDatabase.getDatabase(getApplicationContext());
 
-        vmMainActivity.getAllHourlyEntries().observe(this, new Observer<List<HourlyEntry>>() {
-            @Override
-            public void onChanged(List<HourlyEntry> hourlyEntries) {
-                hourlyAdapter.setItems(hourlyEntries.get(0).getHourlyList());
-            }
-        });
+        VmFactory vmFactory  = new VmFactory(mWeatherDb, 0);
+        final VmMainActivity vmMainActivity =ViewModelProviders.of(this, vmFactory).get(VmMainActivity.class);
+        vmMainActivity.getForecastEntry().observe(this, new Observer<ForecastEntry>() {
+                    @Override
+                    public void onChanged(ForecastEntry forecastEntry) {
+                        forecastAdapter.setItems(forecastEntry.getForecastList());
+
+                    }
+                });
+
+                vmMainActivity.getHourlyEntry().observe(this, new Observer<HourlyEntry>() {
+                            @Override
+                            public void onChanged(HourlyEntry hourlyEntry) {
+                                hourlyAdapter.setItems(hourlyEntry.getHourlyList());
+                            }
+                        });
 
 
-        setHourlyRecycler();
+                        setHourlyRecycler();
         setForecastRecycler();
     }
 
