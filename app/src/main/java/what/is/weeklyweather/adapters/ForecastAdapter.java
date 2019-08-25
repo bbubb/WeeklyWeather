@@ -16,18 +16,18 @@ import java.util.Date;
 import java.util.List;
 
 import what.is.weeklyweather.R;
-import what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem;
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.Datum;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
 
-    private List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> items;
+    private List<Datum> items;
     private Context context;
 
-    public ForecastAdapter(List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> items) {
+    public ForecastAdapter(List<Datum> items) {
         this.items = items;
     }
 
-    public void setItems(List<DataItem> mItems){
+    public void setItems(List<Datum> mItems){
         items = mItems;
         notifyDataSetChanged();
     }
@@ -42,7 +42,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
-        DataItem weekDay = items.get(position);
+        Datum weekDay = items.get(position);
         holder.tvWeekDay.setText(android.text.format.DateFormat.format("EEEEE-dd", (new Date(weekDay.getTime() * (long) 1000))).toString().toUpperCase());
         holder.tvWeatherInfo.setText(weekDay.getSummary());
         holder.tvTempHigh.setText(String.valueOf(Math.round(weekDay.getTemperatureMax())) + "°");

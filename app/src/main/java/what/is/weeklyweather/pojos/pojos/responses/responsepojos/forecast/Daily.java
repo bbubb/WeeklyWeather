@@ -1,51 +1,41 @@
+
 package what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Daily{
+public class Daily {
 
-	@SerializedName("summary")
-	private String summary;
+    @SerializedName("data")
+    private List<Datum> mData;
+    @SerializedName("icon")
+    private String mIcon;
+    @SerializedName("summary")
+    private String mSummary;
 
-	@SerializedName("data")
-	private List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> data;
+    public List<Datum> getData() {
+        return mData;
+    }
 
-	@SerializedName("icon")
-	private String icon;
+    public void setData(List<Datum> data) {
+        mData = data;
+    }
 
-	public void setSummary(String summary){
-		this.summary = summary;
-	}
+    public String getIcon() {
+        return mIcon;
+    }
 
-	public String getSummary(){
-		return summary;
-	}
+    public void setIcon(String icon) {
+        mIcon = icon;
+    }
 
-	public void setData(List<DataItem> data){
-		this.data = data;
-	}
+    public String getSummary() {
+        return mSummary;
+    }
 
-	public List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> getData(){
-		return data;
-	}
+    public void setSummary(String summary) {
+        mSummary = summary;
+    }
 
-	public void setIcon(String icon){
-		this.icon = icon;
-	}
-
-	public String getIcon(){
-		return icon;
-	}
-
-	@Override
- 	public String toString(){
-		return 
-			"Daily{" + 
-			"summary = '" + summary + '\'' + 
-			",data = '" + data + '\'' + 
-			",icon = '" + icon + '\'' + 
-			"}";
-		}
 }

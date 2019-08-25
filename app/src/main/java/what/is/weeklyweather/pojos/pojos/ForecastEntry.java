@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.List;
 
-import what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem;
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.Datum;
 
 @Entity(tableName = "forecast_entry")
 public class ForecastEntry {
@@ -16,9 +16,9 @@ public class ForecastEntry {
     private int id;
 
     @ColumnInfo(name = "forecast_list")
-    private List<DataItem> mForecastList;
+    private List<Datum> mForecastList;
 
-    public ForecastEntry(List<DataItem> mForecastList) {
+    public ForecastEntry(List<Datum> mForecastList) {
         this.mForecastList = mForecastList;
     }
 
@@ -30,7 +30,7 @@ public class ForecastEntry {
         this.id = id;
     }
 
-    public List<DataItem> getForecastList() {
+    public List<Datum> getForecastList() {
         return mForecastList;
     }
 

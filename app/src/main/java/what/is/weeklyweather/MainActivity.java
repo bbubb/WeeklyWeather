@@ -30,6 +30,7 @@ import what.is.weeklyweather.pojos.pojos.HourlyEntry;
 import what.is.weeklyweather.pojos.pojos.responses.CurrentDarkSkyResponse;
 import what.is.weeklyweather.pojos.pojos.responses.ForecastDarkSkyResponse;
 import what.is.weeklyweather.pojos.pojos.responses.HourlyDarkSkyResponse;
+import what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.Datum;
 import what.is.weeklyweather.pojos.pojos.responses.responsepojos.hourly.DataItem;
 import what.is.weeklyweather.retrofit.RetrofitDarkSkyClient;
 import what.is.weeklyweather.retrofit.WeatherService;
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         forecastRecycler.setHasFixedSize(true);
     }
 
-    private void loadForecastRecycler (List<what.is.weeklyweather.pojos.pojos.responses.responsepojos.forecast.DataItem> forecastDays){
+    private void loadForecastRecycler (List<Datum> forecastDays){
        forecastAdapter = new ForecastAdapter(forecastDays);
         forecastRecycler.setAdapter(forecastAdapter);
     }

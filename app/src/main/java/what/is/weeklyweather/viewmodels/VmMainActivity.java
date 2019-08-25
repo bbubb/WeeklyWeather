@@ -34,7 +34,11 @@ public class VmMainActivity extends ViewModel {
         mAllhourlyEntries = mHourlyRepository.getAllHourlyEntries();
     }
 
-     public LiveData<List<ForecastEntry>> getAllForecastEntries(){return mAllForecastEntries;}
+    public VmMainActivity() {
+
+    }
+
+    public LiveData<List<ForecastEntry>> getAllForecastEntries(){return mAllForecastEntries;}
      public LiveData<ForecastEntry> getForecastEntry(){return mForecastEntry;}
     public void insert(ForecastEntry forecastEntry){mForecastRepository.insert(forecastEntry);}
 
