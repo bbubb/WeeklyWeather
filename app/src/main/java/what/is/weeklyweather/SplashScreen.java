@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashScreen extends AppCompatActivity implements LocationListener {
-    private static int SPLASH_TIMER = 5000;
+    private static int SPLASH_TIMER = 3000;
     LocationManager locationManager;
     @BindView(R.id.tv_lng_cords)
     TextView tvLngCords;

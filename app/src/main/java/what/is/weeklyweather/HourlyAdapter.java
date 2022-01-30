@@ -40,7 +40,7 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
         holder.tvTemp.setText(String.valueOf(Math.round(hour.getTemperature())) + "°");
         holder.ivHourlyIcon.setImageDrawable(getWeatherIcon(hour.getIcon()));
         holder.tvHour.setText(android.text.format.DateFormat.format("hha", (new Date((long) (hour.getTime() * (long) 1000)))).toString().toUpperCase());
-        holder.tvPrecipitation.setText(String.valueOf(Math.round(hour.getPrecipProbability()))+"%");
+        holder.tvPrecipitation.setText(String.valueOf(Math.round((hour.getPrecipProbability())*100))+"%");
     }
 
     private Drawable getWeatherIcon(String icon) {
